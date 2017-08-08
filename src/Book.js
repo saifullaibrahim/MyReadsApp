@@ -2,6 +2,7 @@ import React from 'react';
 
 const Book = (props) => {
   return (
+
     <div className="book">
       <div className="book-top">
         <div className="book-cover" style={{
