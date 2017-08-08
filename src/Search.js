@@ -48,13 +48,12 @@ class Search extends Component {
   }
 
   render() {
-    const {booksState} = this.props
     return (
       <div className="search-books">
         <div className="search-books-bar">
           <Link className="close-search" to="/">Close</Link>
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author component" onKeyUp={(e) => this.searchBook(e.target.value, booksState)}/>
+            <input type="text" placeholder="Search by title or author component" onKeyUp={(e) => this.searchBook(e.target.value, this.props.booksState)}/>
           </div>
         </div>
         <div className="search-books-results">

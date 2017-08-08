@@ -9,22 +9,23 @@ class Shelf extends Component {
   state = {
     books: []
   }
-  getAllBooks = () => {
-    BooksAPI.getAll().then((books) => {
-      this.setState(state => ({books: books}))
-    })
-  }
+
   componentWillMount() {
-    this.getAllBooks()
+    this.props.getAllBooks()
   }
 
   handleChange = (book, shelf) => {
-    (shelf !== "none") && BooksAPI.update(book, shelf).then(() => {
-      this.getAllBooks()
-    })
+    if (book.shelf !== shelf && shelf !== "none") {
+      BooksAPI.update(book, shelf).then(() => {
+        book.shelf = shelf
+        this.setState(state => ({
+          books: state.books.filter(b => b.id !== book.id).concat([book])
+        }))
+      })
+    }
   }
   render() {
-    const booksData = this.state.books
+    const booksData = this.props.booksState
     return (
       <div className="app">
         <div className="list-books">
