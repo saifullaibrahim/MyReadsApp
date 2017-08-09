@@ -21,6 +21,9 @@ class Search extends Component {
               if (searchItem.id === booksItem.id) {
                 searchItem.shelf = booksItem.shelf
                 return searchItem
+              } else if (!searchItem.shelf) {
+                searchItem.shelf = "none"
+                return searchItem
               } else {
                 return searchItem
               }
